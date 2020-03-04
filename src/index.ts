@@ -17,10 +17,12 @@ export default class Main {
   }
 
   private static onReady(): void {
-    console.log(typeof MAIN_WINDOW_WEBPACK_ENTRY);
     Main.mainWindow = new Main.BrowserWindow({
       width: 1280,
-      height: 720
+      height: 720,
+      webPreferences: {
+        nodeIntegration: true
+      }
     });
     Main.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
     Main.mainWindow.webContents.openDevTools();
