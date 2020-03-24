@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Player from '../classes/Player';
 
-export interface LobbyProps {
+export interface LobbyFormProps {
   parentCallback: (data: Player) => void;
 
   player: Player;
 }
 
-export class LobbyForm extends React.Component<LobbyProps> {
-  constructor(props: LobbyProps) {
+export class LobbyForm extends React.Component<LobbyFormProps> {
+  constructor(props: LobbyFormProps) {
     super(props);
 
     this.handleNameChange = this.handleNameChange.bind(this);
