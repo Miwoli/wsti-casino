@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HashRouter as Router, Route, Switch, HashRouter, Link } from 'react-router-dom';
+import { Route, Switch, Link, MemoryRouter } from 'react-router-dom';
 import Player from '../classes/Player';
 import { LobbyForm } from './LobbyForm';
 import styled from 'styled-components';
@@ -37,14 +37,14 @@ export class Main extends React.Component<MainProps, MainState> {
   render(): JSX.Element {
     return (
       <>
-        <HashRouter>
+        <MemoryRouter>
           <Switch>
             <Route exact path="/lobby" render={ () => (<LobbyForm player={ this.state.player } parentCallback={ this.lobbyFormCallback } />) } />
             <Route>
               <Link to="/lobby">Lobby</Link>
             </Route>
           </Switch>
-        </HashRouter>
+        </MemoryRouter>
         {/* TODO: Add leaderboards and exit to router */}
         <p>{ this.state.player.name }</p>
         <p>{ this.state.player.money }</p>

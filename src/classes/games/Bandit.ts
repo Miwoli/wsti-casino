@@ -1,5 +1,10 @@
-import Game from "../Game";
+import Game from '../Game';
+import * as _ from 'lodash';
 
+export interface reward {
+  'reward': number,
+  'name': null | string,
+};
 export default class Bandit extends Game {
   symbols = [
     'diamond',
@@ -94,6 +99,25 @@ export default class Bandit extends Game {
       ],
       'reward': 1000
     }
-  ] // TODO: Extract to config file
+  ];
+
+  drawed: string[];
+
+  draw(): void {
+    let temp = [];
+    for (let i = 0; i < 3; i++) {
+      temp.push(this.symbols[Math.floor(Math.random() * this.symbols.length)]);
+    };
+    this.drawed = temp;
+  }
+
+  play(): reward {
+    this.draw()
+    const win = this.combinations.find(item => {
+      return _.isEqual(item.symbols, this.drawed)
+    });
+
+    return win ? win : { 'name': 'Nothing', reward: 0 };
+  }
 
 }
