@@ -24,30 +24,34 @@ export class Main extends React.Component<MainProps, MainState> {
     super(props);
 
     this.state = {
-      player: new Player('', 0)
+      player: new Player('')
     }
   }
 
   lobbyFormCallback = (dataFromChild: Player): void => {
     this.setState({
-      player: new Player(dataFromChild.name, dataFromChild.money)
+      player: new Player(dataFromChild.name)
     });
-  }; 
+  };
+
+  moneyChangeCallback = (): void => {
+    this.setState({
+      player: this.state.player
+    });
+  };
 
   render(): JSX.Element {
     return (
       <>
         <MemoryRouter>
           <Switch>
-            <Route exact path="/lobby" render={ () => (<LobbyForm player={ this.state.player } parentCallback={ this.lobbyFormCallback } />) } />
+            <Route exact path="/lobby" render={ () => (<LobbyForm player={ this.state.player } parentCallback={ this.lobbyFormCallback } moneyCallback={ this.moneyChangeCallback } />) } />
             <Route>
               <Link to="/lobby">Lobby</Link>
             </Route>
           </Switch>
         </MemoryRouter>
         {/* TODO: Add leaderboards and exit to router */}
-        <p>{ this.state.player.name }</p>
-        <p>{ this.state.player.money }</p>
       </>
     );
   }

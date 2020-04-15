@@ -1,6 +1,9 @@
+import config from '../config.json';
+
 export default class Player {
   name: string;
   money: number;
+  initialMoney: number;
 
   setName(name: string) {
     this.name = name;
@@ -18,8 +21,13 @@ export default class Player {
     this.money -= money;
   }
 
-  constructor(name: string, money: number) {
+  generateRandomMoney() {
+    this.money = Math.floor(Math.random() * (config.player.initialMoneyRange[1] - config.player.initialMoneyRange[0] + 1)) + config.player.initialMoneyRange[0];
+    this.initialMoney = this.money;
+  }
+
+  constructor(name: string) {
     this.name = name;
-    this.money = money
+    this.generateRandomMoney();
   }
 }

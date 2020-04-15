@@ -5,11 +5,13 @@ import config from '../../config.json';
 
 export interface BanditGameProps {
   player: Player;
+
+  moneyCallback: () => void;
 }
 
 export interface BanditGameState {
   game: Bandit;
-  result: reward
+  result: reward;
 }
 
 export class BanditGame extends React.Component<BanditGameProps, BanditGameState> {
@@ -25,14 +27,17 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
   }
 
   handleStartGame = () => {
-    if (this.props.player.money <= config.games.bandit.price) {
+    if (this.props.player.money < config.games.bandit.price) {
       console.log('Not enough money') // TODO: Handle it
       return
     }
     this.props.player.subtractMoney(config.games.bandit.price);
     this.setState({
       result: this.state.game.play()
-    })
+    });
+    this.props.player.addMoney(this.state.result.reward);
+
+    this.props.moneyCallback();
   }
 
   render() {

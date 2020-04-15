@@ -5,6 +5,7 @@ import { GameSelect } from './GameSelect';
 
 export interface LobbyFormProps {
   parentCallback: (data: Player) => void;
+  moneyCallback: () => void;
 
   player: Player;
 }
@@ -22,7 +23,6 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleMoneyChange = this.handleMoneyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -38,16 +38,12 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
     this.props.player.name = event.currentTarget.value;
   };
 
-  handleMoneyChange = (event: React.FormEvent<HTMLInputElement>) => {
-    this.props.player.money = parseFloat(event.currentTarget.value);
-  }
-
   render(): JSX.Element {
     return (
       <MemoryRouter>
         <Switch>
           {/* <Route exact path="/lobby/game-select" render={ () => (<GameSelect />)} /> */}
-          <Route exact path="/lobby/game-select" render={ () => (<GameSelect player={ this.props.player }/>)} />
+          <Route exact path="/lobby/game-select" render={ () => (<GameSelect player={ this.props.player } moneyCallback={ this.props.moneyCallback }/>)} />
           <Route>
             {
               this.state.formSent &&
@@ -56,7 +52,6 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
             <form onSubmit={ this.handleSubmit }>
               <button type="submit">Save</button>
               <input onChange={ this.handleNameChange } type="text"></input>
-              <input onChange={ this.handleMoneyChange } type="number"></input>
             </form>
           </Route>
         </Switch>
