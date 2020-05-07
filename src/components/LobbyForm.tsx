@@ -42,7 +42,6 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
     return (
       <MemoryRouter>
         <Switch>
-          {/* <Route exact path="/lobby/game-select" render={ () => (<GameSelect />)} /> */}
           <Route exact path="/lobby/game-select" render={ () => (<GameSelect player={ this.props.player } moneyCallback={ this.props.moneyCallback }/>)} />
           <Route>
             {
@@ -50,8 +49,8 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
                 <Redirect to="/lobby/game-select" />
             }
             <form onSubmit={ this.handleSubmit }>
-              <button type="submit">Save</button>
               <input onChange={ this.handleNameChange } type="text"></input>
+              <button type="submit">Save</button>
             </form>
           </Route>
         </Switch>

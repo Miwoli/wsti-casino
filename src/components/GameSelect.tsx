@@ -24,10 +24,16 @@ export class GameSelect extends React.Component<GameSelectProps> {
         <MemoryRouter>
           <Switch>
             <Route exact path="/lobby/game-select/bandit" render={ () => (<BanditGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } />) } />
-            <Route exact path="/lobby/game-select/blackjack" render={ () => (<BlackjackGame />) } />
+            <Route exact path="/lobby/game-select/blackjack" render={ () => (<BlackjackGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } />) } />
             <Route>
-              <Link to="/lobby/game-select/bandit">One-hand Bandit</Link>
-              <Link to="/lobby/game-select/blackjack">Blackjack</Link>
+              <ul>
+                <li>
+                  <Link to="/lobby/game-select/bandit">One-hand Bandit</Link>
+                </li>
+                <li>
+                  <Link to="/lobby/game-select/blackjack">Blackjack</Link>
+                </li>
+              </ul>
             </Route>
           </Switch>
         </MemoryRouter>

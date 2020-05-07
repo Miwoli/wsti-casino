@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Player from '../../classes/Player';
-import Bandit, { reward } from '../../classes/games/Bandit';
+import Bandit from '../../classes/games/Bandit';
+import { reward } from '../../helpers/interfaces/reward';
 import config from '../../config.json';
 
 export interface BanditGameProps {
@@ -26,10 +27,11 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
     this.handleStartGame = this.handleStartGame.bind(this)
   }
 
-  handleStartGame = () => {
+  handleStartGame = (event: React.FormEvent): void => {
+    event.preventDefault();
     if (this.props.player.money < config.games.bandit.price) {
       console.log('Not enough money') // TODO: Handle it
-      return
+      return;
     }
     this.props.player.subtractMoney(config.games.bandit.price);
     this.setState({
@@ -40,7 +42,7 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
     this.props.moneyCallback();
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <button onClick={ this.handleStartGame }>Play</button>
@@ -50,5 +52,4 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
       </div>
     )
   }
-
 }

@@ -1,10 +1,7 @@
 import Game from '../Game';
 import * as _ from 'lodash';
+import { reward } from '../../helpers/interfaces/reward';
 
-export interface reward {
-  'reward': number,
-  'name': null | string,
-};
 export default class Bandit extends Game {
   symbols = [
     'diamond',
