@@ -1,4 +1,4 @@
 export interface reward {
-  'reward': number,
-  'name': null | string,
+  reward: number,
+  name: null | string,
 };

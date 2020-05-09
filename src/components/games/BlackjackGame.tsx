@@ -24,7 +24,7 @@ export class BlackjackGame extends React.Component<BlackjackGameProps, Blackjack
       game: new Blackjack(),
       started: false,
       bet: 0,
-      result: { 'reward': 0, 'name': 'Nothing' }
+      result: { reward: 0, name: 'Nothing' }
     }
 
     this.handleStartGame = this.handleStartGame.bind(this);
