@@ -46,7 +46,7 @@ export class BlackjackGame extends React.Component<BlackjackGameProps, Blackjack
     this.props.player.subtractMoney(this.state.bet);
     this.setState({
       started: true
-    })
+    });
     this.forceUpdate();
     this.props.moneyCallback();
     if (this.state.game.playerHand.total === 21) {

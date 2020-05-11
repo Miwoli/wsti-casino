@@ -2,6 +2,7 @@
   "type": [
     {
       "name": "numbers",
+      "id": 100,
       "options": [
         {
           "id": 1,
@@ -22,6 +23,7 @@
     },
     {
       "name": "groups",
+      "id": 200,
       "options": [
         {
           "id": 4,

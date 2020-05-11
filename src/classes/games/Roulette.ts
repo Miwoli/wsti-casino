@@ -6,6 +6,8 @@ import { rouletteItem } from '../../helpers/interfaces/rouletteItem';
 import { reward } from '../../helpers/interfaces/reward';
 
 export default class Roulette extends Game {
+  pickedNumber: number
+
   constructor() {
     super();
   }
@@ -17,6 +19,7 @@ export default class Roulette extends Game {
   play(bet: rouletteBet, money: number): reward {
     const picked = this.spin();
 
+    this.pickedNumber = picked.number;
     return (bet.numbers.includes(picked.number)) ? { name: bet.name, reward: bet.rewardMultiplier * money } : { name: 'Nothing', reward: 0 };
   }
 

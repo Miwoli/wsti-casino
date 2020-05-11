@@ -114,7 +114,7 @@ export default class Bandit extends Game {
       return _.isEqual(item.symbols, this.drawed)
     });
 
-    return win ? win : { 'name': 'Nothing', reward: 0 };
+    return win ? win : { name: 'Nothing', reward: 0 };
   }
 
 }
