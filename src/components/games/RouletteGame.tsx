@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { DynamicSelect } from '../shared/DynamicSelect';
-// TODO: Add Roulette once it's implemented
 import Player from '../../classes/Player';
 import { reward } from '../../helpers/interfaces/reward';
 import RouletteBets from '../../helpers/assets/rouletteBets.json';
