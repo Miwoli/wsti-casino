@@ -6,6 +6,28 @@ body {
   background: white;
 }
 
-LobbyForm {
-  background-color: pink;
+.redalert {
+  animation: redalert 3s forwards;
+}
+
+@keyframes redalert {
+  0% {
+    color: black;
+  }
+
+  25% {
+    color: red;
+  }
+
+  50% {
+    color: black;
+  }
+
+  75% {
+    color: red;
+  }
+
+  100% {
+    color: black;
+  }
 }

@@ -2,15 +2,6 @@ import * as React from 'react';
 import { Route, Switch, Link, MemoryRouter } from 'react-router-dom';
 import Player from '../classes/Player';
 import { LobbyForm } from './LobbyForm';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  background-color: ${props => props.color};
-  @media(max-width: 500px){
-    background-color: blue;
-  }
-`;
-
 
 export interface MainProps {
 }

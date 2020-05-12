@@ -1,6 +1,3 @@
-const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
-const styledComponentsTransformer = createStyledComponentsTransformer();
-
 module.exports = [
   // Add support for native node modules
   {
@@ -24,7 +21,6 @@ module.exports = [
       loader: 'ts-loader',
       options: {
         transpileOnly: true,
-        getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
       }
     }
   },

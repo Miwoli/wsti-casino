@@ -49,7 +49,10 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
                 <Redirect to="/lobby/game-select" />
             }
             <form onSubmit={ this.handleSubmit }>
-              <input onChange={ this.handleNameChange } type="text"></input>
+              <label>
+                Enter user name: &nbsp;
+                <input onChange={ this.handleNameChange } type="text" placeholder="Gambler" required></input>
+              </label>
               <button type="submit">Save</button>
             </form>
           </Route>

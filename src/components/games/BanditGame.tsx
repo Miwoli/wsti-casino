@@ -3,11 +3,13 @@ import Player from '../../classes/Player';
 import Bandit from '../../classes/games/Bandit';
 import { reward } from '../../helpers/interfaces/reward';
 import config from '../../config.json';
+import { Link } from 'react-router-dom';
 
 export interface BanditGameProps {
   player: Player;
 
   moneyCallback: () => void;
+  insufficientMoneyCallback: () => void;
 }
 
 export interface BanditGameState {
@@ -30,7 +32,7 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
   handleStartGame = (event: React.FormEvent): void => {
     event.preventDefault();
     if (this.props.player.money < config.games.bandit.price) {
-      console.log('Not enough money') // TODO: Handle it
+      this.props.insufficientMoneyCallback();
       return;
     }
     this.props.player.subtractMoney(config.games.bandit.price);
@@ -44,12 +46,23 @@ export class BanditGame extends React.Component<BanditGameProps, BanditGameState
 
   render(): JSX.Element {
     return (
-      <div>
+      <>
+        <p>Costs { config.games.bandit.price }</p>
         <button onClick={ this.handleStartGame }>Play</button>
         <p>{ this.state.result.name }</p>
         <p>{ this.state.result.reward }</p>
-        <p>{ this.state.game.drawed }</p>
-      </div>
+        <p>
+          {
+            this.state.game.drawed ?
+            this.state.game.drawed.map((item, idx) =>
+            (<span key={ idx }> {item} </span>)) :
+            <></>
+          }
+        </p>
+        <p>
+          <Link to="/lobby/game-select">Return to game select</Link>
+        </p>
+      </>
     )
   }
 }

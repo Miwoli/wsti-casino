@@ -2,11 +2,13 @@ import * as React from 'react';
 import Blackjack from '../../classes/games/Blackjack';
 import Player from '../../classes/Player';
 import { reward } from '../../helpers/interfaces/reward';
+import { Link } from 'react-router-dom';
 
 export interface BlackjackGameProps {
   player: Player;
 
   moneyCallback: () => void;
+  insufficientMoneyCallback: () => void;
 }
 
 export interface BlackjackGameState {
@@ -39,7 +41,7 @@ export class BlackjackGame extends React.Component<BlackjackGameProps, Blackjack
   handleStartGame = (event: React.FormEvent): void => {
     event.preventDefault();
     if (this.props.player.money < this.state.bet) {
-      console.log('Not enough money'); // TODO: Handle it
+      this.props.insufficientMoneyCallback();
       return;
     };
     this.state.game.start(this.state.bet);
@@ -89,7 +91,10 @@ export class BlackjackGame extends React.Component<BlackjackGameProps, Blackjack
 
     const startForm = (
       <form onSubmit={ this.handleStartGame }>
-        <input onChange={ this.handleBetChange } type="number" />
+        <label>
+          Bet amount: &nbsp;
+          <input onChange={ this.handleBetChange } type="number" min="0" placeholder="100" required />
+        </label>
         <button type="submit">Start</button>
       </form>
     )
@@ -108,6 +113,9 @@ export class BlackjackGame extends React.Component<BlackjackGameProps, Blackjack
         { playerCards }
         <p>House: { this.state.game.houseHand.total }</p>
         { houseCards }
+        <p>
+          <Link to="/lobby/game-select">Return to game select</Link>
+        </p>
       </>
     ) 
   }

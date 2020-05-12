@@ -12,22 +12,47 @@ export interface GameSelectProps {
   moneyCallback: () => void;
 }
 
-export class GameSelect extends React.Component<GameSelectProps> {
+export interface GameSelectState {
+  classNames: string;
+}
+
+export class GameSelect extends React.Component<GameSelectProps, GameSelectState> {
   constructor(props: GameSelectProps) {
     super(props);
+
+    this.state = {
+      classNames: ''
+    }
+  }
+
+  insufficientMoney = () => {
+    this.setState({
+      classNames: 'redalert'
+    });
+  }
+
+  onAnimationEnd = () => {
+    this.setState({
+      classNames: ''
+    });
   }
 
   render() {
     return (
       <>
         <div>
-          <span>{ this.props.player.name } | { this.props.player.money }</span>
+          <span>{ this.props.player.name } | </span>
+          <span
+            className={ this.state.classNames }
+            onAnimationEnd={ this.onAnimationEnd }>
+              { this.props.player.money }
+          </span>
         </div>
         <MemoryRouter>
           <Switch>
-            <Route exact path="/lobby/game-select/bandit" render={ () => (<BanditGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } />) } />
-            <Route exact path="/lobby/game-select/blackjack" render={ () => (<BlackjackGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } />) } />
-            <Route exact path="/lobby/game-select/roulette" render={ () => (<RouletteGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } />) } />
+            <Route exact path="/lobby/game-select/bandit" render={ () => (<BanditGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
+            <Route exact path="/lobby/game-select/blackjack" render={ () => (<BlackjackGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
+            <Route exact path="/lobby/game-select/roulette" render={ () => (<RouletteGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
             <Route>
               <ul>
                 <li>
