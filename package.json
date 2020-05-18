@@ -2,7 +2,7 @@
   "name": "wsti-casino",
   "productName": "wsti-casino",
   "version": "0.0.1",
-  "description": "My Electron application description",
+  "description": "WSTI Casino made to pass my coding labs",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -16,7 +16,9 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./src/icon.png"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -25,10 +27,7 @@
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
+          "name": "@electron-forge/maker-zip"
         },
         {
           "name": "@electron-forge/maker-deb",
