@@ -6,5 +6,6 @@
     "bandit": {
       "price": 5
     }
-  }
+  },
+  "leaderboardFile": "./leaderboards.txt"
 }

@@ -26,7 +26,7 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = (event: React.FormEvent) => {
+  handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     this.props.parentCallback(this.props.player);
     this.setState({
@@ -34,7 +34,7 @@ export class LobbyForm extends React.Component<LobbyFormProps, LobbyFormState> {
     });
   };
 
-  handleNameChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleNameChange = (event: React.FormEvent<HTMLInputElement>): void => {
     this.props.player.name = event.currentTarget.value;
   };
 

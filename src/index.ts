@@ -25,7 +25,6 @@ export default class Main {
       }
     });
     Main.mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-    Main.mainWindow.webContents.openDevTools();
     Main.mainWindow.on('closed', Main.onClose);
   }
 

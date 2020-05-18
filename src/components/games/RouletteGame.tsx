@@ -105,7 +105,6 @@ export class RouletteGame extends React.Component<RouletteGameProps, RouletteGam
       bet = RouletteBets.type[1].options.find(item => item.id == this.state.betId);
     }
 
-    console.log(bet);
     const result = this.state.game.play(bet, this.state.bet);
 
     this.setState({
@@ -118,7 +117,7 @@ export class RouletteGame extends React.Component<RouletteGameProps, RouletteGam
     this.reset();
   }
 
-  reset = () => {
+  reset = (): void => {
     this.setState({
       started: false,
       betType: 0,
@@ -129,19 +128,19 @@ export class RouletteGame extends React.Component<RouletteGameProps, RouletteGam
     });
   }
 
-  handleNumerOneChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleNumerOneChange = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       numberOne: parseInt(event.currentTarget.value)
     });
   }
 
-  handleNumerTwoChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleNumerTwoChange = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       numberTwo: parseInt(event.currentTarget.value)
     });
   }
 
-  handleNumerThreeChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleNumerThreeChange = (event: React.FormEvent<HTMLInputElement>): void => {
     this.setState({
       numberThree: parseInt(event.currentTarget.value)
     });

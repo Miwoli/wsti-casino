@@ -5,6 +5,7 @@ import Player from '../classes/Player';
 import { BanditGame } from './games/BanditGame';
 import { BlackjackGame } from './games/BlackjackGame';
 import { RouletteGame } from './games/RouletteGame';
+import { Exit } from './Exit';
 
 export interface GameSelectProps {
   player: Player;
@@ -25,19 +26,19 @@ export class GameSelect extends React.Component<GameSelectProps, GameSelectState
     }
   }
 
-  insufficientMoney = () => {
+  insufficientMoney = (): void => {
     this.setState({
       classNames: 'redalert'
     });
   }
 
-  onAnimationEnd = () => {
+  onAnimationEnd = (): void => {
     this.setState({
       classNames: ''
     });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <div>
@@ -53,6 +54,7 @@ export class GameSelect extends React.Component<GameSelectProps, GameSelectState
             <Route exact path="/lobby/game-select/bandit" render={ () => (<BanditGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
             <Route exact path="/lobby/game-select/blackjack" render={ () => (<BlackjackGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
             <Route exact path="/lobby/game-select/roulette" render={ () => (<RouletteGame player={ this.props.player } moneyCallback={ this.props.moneyCallback } insufficientMoneyCallback={ this.insufficientMoney } />) } />
+            <Route exact path="/exit" render={ () => (<Exit player={ this.props.player } />) } />
             <Route>
               <ul>
                 <li>
@@ -63,6 +65,9 @@ export class GameSelect extends React.Component<GameSelectProps, GameSelectState
                 </li>
                 <li>
                   <Link to="/lobby/game-select/roulette">Roulette</Link>
+                </li>
+                <li>
+                  <Link to="/exit">Save and exit</Link>
                 </li>
               </ul>
             </Route>
